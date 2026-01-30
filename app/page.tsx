@@ -215,7 +215,7 @@ export default function PasteleriaProfesional() {
             <span className="text-4xl font-black text-pink-500 tracking-tighter">${totalCarrito.toLocaleString()}</span>
           </div>
           <button onClick={() => {
-            const tel = "569XXXXXXXX"; // <-- TU NÚMERO AQUÍ
+            const tel = "56933954156"; // <-- TU NÚMERO AQUÍ
             const resumen = carrito.map(i => `• ${i.cantidad}x ${i.nombre} ($${(i.precio * i.cantidad).toLocaleString()})`).join('\n');
             const msg = encodeURIComponent(`*NUEVO PEDIDO PASTELERÍA*\n\n${resumen}\n\n*TOTAL: $${totalCarrito.toLocaleString()}*`);
             window.open(`https://wa.me/${tel}?text=${msg}`);
