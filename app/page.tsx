@@ -8,7 +8,7 @@ export default function PasteleriaElite() {
   const [carrito, setCarrito] = useState<any[]>([])
   const [catActual, setCatActual] = useState('Todos')
   const [isAdmin, setIsAdmin] = useState(false)
-  const [modal, setModal] = useState({ abierto: false, modo: 'crear', item: null })
+  const [modal, setModal] = useState<{ abierto: boolean; modo: string; item: any }>({ abierto: false, modo: 'crear', item: null })
   const [mostrarLogin, setMostrarLogin] = useState(false)
   const [cargando, setCargando] = useState(true)
 
@@ -51,7 +51,7 @@ export default function PasteleriaElite() {
     e.preventDefault()
     if (modal.modo === 'crear') {
       await supabase.from('productos').insert([form])
-    } else {
+    } else if (modal.item) {
       await supabase.from('productos').update(form).eq('id', modal.item.id)
     }
     setModal({ abierto: false, modo: 'crear', item: null })
