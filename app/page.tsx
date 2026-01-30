@@ -106,12 +106,21 @@ export default function PasteleriaElite() {
               </div>
             )}
 
-            {/* IMAGEN CON DESCRIPCIÓN OVERLAY */}
-            <div className="h-64 overflow-hidden relative">
+            {/* IMAGEN CON DESCRIPCIÓN (Adaptada para Celular y PC) */}
+            <div
+              className="h-64 overflow-hidden relative cursor-pointer"
+              onClick={(e) => {
+                // Esto permite que en celular se "active" al tocar
+                const overlay = e.currentTarget.querySelector('.description-overlay');
+                overlay?.classList.toggle('opacity-100');
+              }}
+            >
               <img src={p.imagen_url} className="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt={p.nombre} />
-              {/* Capa de descripción al pasar el mouse */}
-              <div className="absolute inset-0 bg-stone-900/80 text-white p-8 flex items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+
+              {/* Capa de descripción: Opacidad 0 por defecto, 100 en hover (PC) o al tocar (Celular) */}
+              <div className="description-overlay absolute inset-0 bg-stone-900/80 text-white p-8 flex flex-col items-center justify-center text-center opacity-0 group-hover:opacity-100 md:transition-opacity duration-500">
                 <p className="text-sm italic font-medium leading-relaxed">{p.descripcion || "Sin descripción disponible"}</p>
+                <span className="mt-4 text-[9px] uppercase tracking-widest text-pink-400 md:hidden">(Toca para cerrar)</span>
               </div>
             </div>
 
